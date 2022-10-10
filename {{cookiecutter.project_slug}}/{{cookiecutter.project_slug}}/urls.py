@@ -3,7 +3,8 @@ from api.urls import router
 from django_globus_portal.views import (
     landing_page, 
     CustomSearch,
-    TransferView
+    TransferView,
+    SearchTransferView,
 )
 
 from django.urls import path, include, reverse
@@ -22,6 +23,8 @@ urlpatterns = [
     path("", lambda r: redirect(reverse('search-about', args=['fema'])), name="landing-page"),
     
     path("<fema:index>", CustomSearch.as_view(), name="search"),
+    path("<fema:index>/search-transfer", SearchTransferView.as_view(),
+         name="search-transfer"),
     path("transfer/", TransferView.as_view(), name="transfer"),
     
     path("", include("globus_portal_framework.urls")),

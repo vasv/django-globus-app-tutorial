@@ -1,10 +1,8 @@
 from dateutil.parser import isoparse
 from urllib.parse import urlsplit, urlunsplit, urlunparse, urlencode
+from django.conf import settings
 
 import os
-
-FEMA_DATA_COLLECTION_UUID = 'a6f165fa-aee2-4fe5-95f3-97429c28bf82'
-
 
 def make_table_data(input_obj: dict, skip: list = None) -> list:
     skip = skip or []
@@ -40,7 +38,7 @@ def file_metadata(result):
 def globus_app_link(result):
     url = result[0]['files'][0]['url']
     parsed = urlsplit(url)
-    query_params = {'origin_id': FEMA_DATA_COLLECTION_UUID,
+    query_params = {'origin_id': settings.PORTAL_ENDPOINT_ID,
                     'origin_path':  os.path.dirname(parsed.path)}
     return urlunsplit(('https', 'app.globus.org', 'file-manager',
                       urlencode(query_params), ''))
