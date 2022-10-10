@@ -24,16 +24,16 @@
       <table class="table table-sm borderless">
         <tbody>
         <tr>
-          <th>Location</th>
-          <th>Date</th>
-          <th>Orbit Path</th>
-          <th>Orbit Count</th>
+          <th>Year</th>
+          <th>Altitude (m)</th>
+          <th>GPS Location</th>
+          <th>Survey</th>
         </tr>
         <tr>
-          <td>{{result.all.0.project_metadata.location}}</td>
-          <td>{{result.date}}</td>
-          <td>{{result.all.0.project_metadata.orbit_path_number}}</td>
-          <td>{{result.all.0.project_metadata.orbit_number}}</td>
+            <td>{{result.all.0.year}}</td>
+            <td>{{result.all.0.gps_alt}}</td>
+            <td>{{result.all.0.gps_lat}}, {{result.all.0.gps_lon}}</td>
+            <td>{{result.all.0.survey}}</td>
         </tr>
         </tbody>
       </table>

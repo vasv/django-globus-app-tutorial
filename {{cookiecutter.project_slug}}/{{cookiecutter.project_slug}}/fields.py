@@ -3,10 +3,18 @@ from urllib.parse import urlsplit, urlunsplit, urlunparse, urlencode
 
 import os
 
-# Normally, we would rely on the collection ID referenced within the search records. However,
-# as of Sept 22nd, the records are out of date and contain an older unusable collection. Use
-# the following colletion instead until search records can be repaired.
-OSN_COLLECTION_ID = 'fac69ab7-d4ef-4bcb-a5bf-1429f86f7665'
+FEMA_DATA_COLLECTION_UUID = 'a6f165fa-aee2-4fe5-95f3-97429c28bf82'
+
+
+def make_table_data(input_obj: dict, skip: list = None) -> list:
+    skip = skip or []
+    def generate_name(field_name):
+        return ' '.join([w.capitalize() for w in field_name.split('_')])
+    fields = [
+        {'field_name': k, 'value': v, 'name': generate_name(k)}
+        for k, v in input_obj.items() if k not in skip
+    ]
+    return fields
 
 
 def title(result):
@@ -14,31 +22,25 @@ def title(result):
 
 
 def date(result):
-    return isoparse(result[0]['dc']['dates'][0]['date'])
+    return isoparse(result[0]['year'])
 
 
 def https_url(result):
-    path = urlsplit(result[0]['files'][0]['url']).path
-    return urlunsplit(('https', 'g-71c9e9.10bac.8443.data.globus.org', path,
-                       '', ''))
+    return result[0]['files'][0]['url']
 
 
 def detail_general_metadata(result):
-    def generate_name(field_name):
-        return ' '.join([w.capitalize() for w in field_name.split('_')])
-    fields = [
-        {'field_name': k, 'value': v, 'name': generate_name(k)}
-        for k, v in result[0]['project_metadata'].items()
-    ]
-    return fields
+    return make_table_data(result[0], skip=['files'])
+
+
+def file_metadata(result):
+    return make_table_data(result[0]['files'][0])
 
 
 def globus_app_link(result):
     url = result[0]['files'][0]['url']
     parsed = urlsplit(url)
-    # normally we would use parsed.netloc for the collection uuid.
-    # See the note above on OSN_COLLECTION_ID
-    query_params = {'origin_id': OSN_COLLECTION_ID,
+    query_params = {'origin_id': FEMA_DATA_COLLECTION_UUID,
                     'origin_path':  os.path.dirname(parsed.path)}
     return urlunsplit(('https', 'app.globus.org', 'file-manager',
                       urlencode(query_params), ''))

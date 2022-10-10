@@ -8,53 +8,39 @@ def get_rfm(search_result):
 
 
 SEARCH_INDEXES = {
-    "terrafusion": {
+    "fema": {
         "uuid": "{{ cookiecutter.globus_search_index }}",
-        "name": "OSN",
-        "template_override_dir": "osn",
+        "name": "Tutorial",
         "fields": [
-            "dc",
             "files",
             "project_metadata",
             ("date", fields.date),
             ("title", fields.title),
             ("detail_general_metadata", fields.detail_general_metadata),
+            ("file_metadata", fields.file_metadata),
             ("https_url", fields.https_url),
             ("copy_to_clipboard_link", fields.https_url),
             ("globus_app_link", fields.globus_app_link),
         ],
         "facets": [
             {
-                "name": "Location",
-                "field_name": "project_metadata.location",
-            },
-            {
                 "name": "Dates",
-                "field_name": "dc.dates.date",
-                "type": "date_histogram",
-                "date_interval": "year",
+                "field_name": "year",
+                "size": 10,
             },
             {
-                "name": "Orbit Groups",
-                "field_name": "project_metadata.orbit_path_name",
+                "name": "Survey",
+                "field_name": "survey",
             },
             {
-                "name": "Orbit",
-                "field_name": "project_metadata.orbit_path_number",
+                "name": "Altitude (m)",
+                "field_name": "gps_alt",
                 "type": "numeric_histogram",
-                "histogram_range": {"low": 0, "high": 240},
+                "histogram_range": {"low": 0, "high": 1000},
                 "filter_type": "range",
-                "size": 40,
-            },
-            {
-                "name": "Subjects",
-                "field_name": "dc.subjects.subject",
-            },
-            {
-                "name": "Contributors",
-                "field_name": "dc.contributors.contributorName",
+                "size": 10,
             },
         ],
-        "sort": [{"field_name": "dc.dates.date", "order": "asc"}],
+        "sort": [{"field_name": "year", "order": "desc"}],
     }
 }

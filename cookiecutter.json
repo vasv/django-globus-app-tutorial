@@ -7,7 +7,7 @@
   "version": "0.1.0",
   "globus_client_id": "f44c948b-8aa5-4881-85c5-e0a2300d96c4",
   "globus_secret_key": "ScsmAsf/0yhP9/uI1vxAsmuRywWW1JLgCbxyKsnd0u8=",
-  "globus_search_index": "25ad7f95-1c21-4f8e-a478-ebdfbdfba7ec",
-  "globus_portal_endpoint_id": "ddb59aef-6d04-11e5-ba46-22000b92c6ec",
+  "globus_search_index": "6be80847-70f9-4441-9075-f9348d6b044a",
+  "globus_portal_endpoint_id": "a6f165fa-aee2-4fe5-95f3-97429c28bf82",
   "_copy_without_render": ["staticfiles/*", "templates/*"]
 }
