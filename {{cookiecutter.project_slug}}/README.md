@@ -1,6 +1,8 @@
 
 # Cookiecutter Django Globus App
 
+> :warning: This fork of DGA cookie-cutter to show tornado data. Use the original [DGA Cookie-cutter](https://github.com/globus/cookiecutter-django-globus-app) for a tutorial using the OSN data collection
+
 This cookiecutter project serves as a starting point for using the [Django Globus Portal Framework](https://github.com/globus/django-globus-portal-framework) (DGPF). Documentation for DGPF can be found [here](https://django-globus-portal-framework.readthedocs.io/en/stable/). Please see the installation instructions below to get an example application running using DGPF.
 
 ### Requirements
