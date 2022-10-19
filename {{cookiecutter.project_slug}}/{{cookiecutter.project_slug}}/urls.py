@@ -1,6 +1,6 @@
 from api.urls import router
 
-from django_globus_portal.views import (
+from {{ cookiecutter.project_slug }}.views import (
     landing_page, 
     CustomSearch,
     TransferView,

@@ -35,7 +35,7 @@ source <path_to_venv>/bin/activate
 	```
 2. Point cookiecutter to this repository:
 	```
-	cookiecutter https://github.com/globus/cookiecutter-django-globus-app
+	cookiecutter https://github.com/globus/django-globus-app-tutorial
 	```
 3. Answer the questions (defaults are provided)
 	```
