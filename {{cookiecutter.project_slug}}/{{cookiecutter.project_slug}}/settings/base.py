@@ -137,6 +137,7 @@ LOGGING = {
     },
     'loggers': {
         'django': {'handlers': ['stream'], 'level': 'INFO'},
+        'globus_portal_framework': {'handlers': ['stream'], 'level': 'INFO'},
         '{{ cookiecutter.project_slug }}': {'handlers': ['stream'], 'level': 'DEBUG'},
     },
 }
